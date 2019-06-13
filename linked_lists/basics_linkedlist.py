@@ -9,8 +9,13 @@ class LinkedList():
 
     def __init__(self,head=None):
         self.head = head
-    
+    '''
+    Insert at the end could be as such
+        1. If linked list is empty, the node becomes the head
+        2. Traverse until the end and insert there
+    '''
     def insert(self,value):
+        #create a node to be inserted
         node = LinkedListNode(value)
         #if no head, make the node as head
         if self.head is None:
@@ -53,6 +58,7 @@ class LinkedList():
 
 
 ll = LinkedList()
+print(ll.head,"hhjh")
 ll.insert("5")
 ll.insert("6")
 ll.insert("7")
