@@ -1,0 +1,35 @@
+h/w vs s/w load balancers
+
+https://blog.containership.io/etcd/
+
+https://blog.containership.io/etcd/
+
+https://www.youtube.com/watch?v=ohSUtEfDefc
+
+
+Kubernetes, also sometimes called K8S (K - eight characters - S),
+ is an open source orchestration framework for containerized applications that was born from the Google data centers
+
+what are pods?
+
+https://kubernetes.io/docs/concepts/workloads/pods/pod/
+
+Options for etcd topology 
+
+https://kubernetes.io/docs/setup/production-environment/tools/kubeadm/ha-topology/
+
+Leader election in kubernetes - by etcd or conensus algorithm
+
+    paxox - one of consensus algorithm
+
+    Main goal of the current problem - Is to make systems agree on 1 value
+
+        proposer - The machine that proposes
+        Acceptor - The machine that accepts or rejects
+
+    
+
+https://kubernetes.io/blog/2016/01/simple-leader-election-with-kubernetes/
+
+
+
