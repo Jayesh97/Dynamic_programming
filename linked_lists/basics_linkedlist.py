@@ -58,7 +58,7 @@ class LinkedList():
 
 
 ll = LinkedList()
-print(ll.head,"hhjh")
+print(ll.head)
 ll.insert("5")
 ll.insert("6")
 ll.insert("7")

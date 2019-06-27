@@ -1,14 +1,18 @@
 #print(3 << 4)
-a = 15
-b = 3
-sign = -1 if a<0 or b<0 else 1
-a = abs(a)
-b = abs(b)
-q = 0
-summ = 0
-for i in range(31,-1,-1):
-    if (summ + b<<i <= a):  #b<<i - 12 which is less than 20
-        summ = summ + b<<i
-        #print(summ,i)
-        q = q | 1<<i
-print(q)
+dividend = 15
+divisor = 3
+def divide(dividend,divisor):
+        sign = -1 if dividend<0 or divisor<0 else 1
+        dividend = abs(dividend)
+        divisor = abs(divisor)
+        quotient = 0
+        while dividend>=divisor:
+                temp = divisor
+                i = 1
+                while dividend>=temp:
+                        dividend = dividend-temp
+                        quotient = quotient+i
+                        temp = temp <<1
+                        i = i<<1
+        return quotient*sign
+print(divide(dividend,divisor))
