@@ -1,13 +1,28 @@
-def largestNumber(array): 
-    extval, ans = [], "" 
-    l = len(str(max(array)))+1
-    for i in array: 
-        temp = str(i) * l 
-        extval.append((temp[:l], i)) 
-    extval.sort(reverse = True)
-    print(extval) 
-    for i in extval:  
-        ans += str(i[1])          
-    return ans
-array = [1, 34, 3, 98, 9, 76, 45, 4, 12, 121]
-print(largestNumber(array))
+import random
+
+class RandomizedSet(object):
+
+    def __init__(self):
+        self.nums, self.pos = [], {}
+        
+    def insert(self,val):
+        if val not in self.pos:
+            self.nums.append(val)
+            self.pos[val]=len(self.nums)-1 #Index of the word in nums  - len(nums)
+            return True
+        return False
+        
+
+    def remove(self, val):
+        if val in self.pos:
+            idx, last = self.pos[val], self.nums[-1]
+            self.nums[idx], self.pos[last] = last, idx
+            self.nums.pop(); self.pos.pop(val, 0)
+            return True
+        return False
+            
+    def getRandom(self):
+        return self.nums[random.randint(0, len(self.nums) - 1)]
+        
+ob = RandomizedSet()
+ob.insert("apple")

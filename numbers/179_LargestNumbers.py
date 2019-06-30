@@ -1,7 +1,5 @@
 nums = [3,30,34,5,9]
 
-
-
 class comp(str):
     def __lt__(x,y):
         return x+y>y+x
