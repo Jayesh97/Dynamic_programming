@@ -1,0 +1,118 @@
+The default backup retention period is one day if you create the DB instance using the Amazon RDS API or the AWS CLI, 
+or seven days if you create the DB instance using the AWS Console.
+
+Amazon RDS does not currently support increasing storage on a ____ Db instance
+
+Block chain - ResourceID.MemberID.NetworkID.managedblockchain.AWSRegion.amazonaws.com:PortNumber
+
+EC2 instances can have credentials stored on them so that the instances can access other resources 
+(such as S3 buckets) and AWS recommends that you do this instead of assigning roles.
+
+Can I move a reserved instance from one region to another?
+
+RDS - We highly discourage disabling automated backups because it disables point-in-time recovery.If you disable and then re-enable 
+        automated backups,you are only able to restore starting from the time you re-enabled automated backups.
+    - In RDS, changes to the backup window take effect
+    - In RDS what is the maximum size for a Microsoft SQL Server DB Instance with SQL Server Express edition?
+    - By multiAZ we can ensure that the backups doesnt take lag
+
+EC2 - Auto Scaling groups are regional constructs. They can span Availability Zones, but not AWS regions.
+
+    - When an EC2 instance is moved from Running to Hibernate state & back to Running state, 
+       there is a change in Public IPv4 address assigned to EC2 instance while no change in Private IPv4 & IPv6 address assigned to EC2 instance.
+
+    - userdata(scripts and userinfo) vs metadata
+
+    - Hyberinate - only storage and IP is charged
+
+
+ELB - ELB can only balance traffic in one region and not across multiple regions.
+
+    - ELB cannot span across regions
+
+    - Elastic Load Balancing uses a TLS negotiation configuration, known as a security policy, 
+      to negotiate TLS connections between a client and the load balancer. A security policy is a combination of protocols and ciphers
+
+        -  cipher is an encryption algorithm that uses encryption keys to create a coded message.
+           Protocols use several ciphers to encrypt data over the internet
+
+
+max 100 buckets per account
+
+
+EFS - data is reduntantly stored in multiAZ
+    - 1000+ instances concurrent
+    - big data, media processing
+
+    - While mounting Amazon EFS, if encryption of data in transit is enabled,
+      EFS Mount helper initialise client Stunnel process to encrypt data in transit. EFS Mount helper uses TLS 1.2 to encrypts data in transit.
+
+
+
+
+Cloud trail logs are encrypted automatically
+
+Redshift has a cross region snapshot option
+
+
+ECS features - Containers and Images, Task Definitions, Tasks and Scheduling, Clusters, Container Agent
+        
+        task Definition - JSON template - contains - docker image to be used, Ec2 instance type, CPU and memory to be used
+
+        ecs Container instances - no access to OS, monitoring enabled
+
+        service Definition - a long JSON template - contains Cluster, service name, task def, service registeries, roles
+
+        Ecs - allows to pass user data to the instance
+
+        Ecs montoring - cloud watch, logs - cloud trail
+
+If you use HTTPS (SSL or TLS) for your front-end listener, you must deploy an SSL/TLS certificate on your load balancer. 
+The load balancer uses the certificate to terminate the connection and then decrypt requests from clients before sending them to the instances.
+
+EBS - General purpose SSD - 3 IOPS/GiB, with the ability to burst to 3,000 IOPS for extended periods of time
+    - provisioned IOPS - 64,000 IOPS and 1,000 MB/s of throughput. 
+    - Encryption by default is a Region-specific setting.
+    - Newly created EBS resources are encrypted by your account's default customer master key (CMK)
+      unless you specify a customer managed CMK in the EC2 settings or at launch
+    - A snapshot is constrained to the AWS Region where it was created.
+        After you create a snapshot of an EBS volume, you can use it to create new volumes in the same Region
+
+    - data is reduntantly stored in single multiAZ
+    - single access
+
+AWS CodeDeploy is a service that automates code deployments to currently running EC2 instances - while launching new would require beanstalk
+
+cloudformation - template - parameters - vpc, subnets,instance type,ssh location
+                          - mappings - region to link, instance to values(m2 large)
+                          - resources - notification topic, webserver grp, policiy, launch config, CPU
+                          - outputs - url
+
+Route 53 - Hosted zones - Public hosted zones contain records that specify how you want to route traffic on the internet
+                        - Private hosted zones contain records that specify how you want to route traffic in an Amazon VPC
+        
+
+AWS config - configurations of your AWS resources. Config continuously monitors and records your AWS resource configurations and 
+             allows you to automate the evaluation of recorded configurations against desired configurations
+
+AWS SSO - When two-way trust relationships are created between AWS Managed Microsoft AD and an on-premises Active Directory, 
+          on-premises users can sign in with their corporate credentials to various AWS services and business applications
+
+        - AD Connector is a directory gateway that can redirect directory requests to your on-premises Active Directory 
+          without caching any information in the cloud
+
+        - If you are connecting AWS SSO to an AD Connector directory, any future user password resets must be done from within Active Directory. 
+          This means that users will not be able to reset their passwords from the user portal.
+
+        - With Context-aware two step verification, AWS SSO analyse user sign-in context such as browser, location & devices, 
+          & if any deviation is observed,only then it asks for additional second level of verification code. 
+          With this, a user does not have to perform two-step verification repeatedly from same device.
+
+lambda - Environment variables for Lambda functions enable you to dynamically pass settings to your function code and libraries, 
+         without making changes to your code. Environment variables are key-value pairs that you create and modify as part 
+         of your function configuration, using either the AWS Lambda Console
+
+VPC endpoints - only for S3 and DynamoDB for others we use 
+
+VPC private links - Interface VPC endpoints are powered by AWS PrivateLink, an AWS technology that enables private communication
+                    between AWS services using an elastic network interface with private IPs in your Amazon VPC
