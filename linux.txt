@@ -1,0 +1,13 @@
+sudo virt-install -n t1_vm4 --disk path=/var/lib/libvirt/images/t1_vm4.img,size=198 --ram=22528 --vcpus=4 --cpu host --cdrom /home/eb2-2027/ubuntu-18.04.3-live-server-amd64.iso  --network network=default --network network=l2_bridge --network network=l3_bridge --network network=t_bridge -v
+
+sudo virt-install -n Dr_Sichitiu -r 24576 --vcpu=4 --cpu host --disk path=/var/lib/libvirt/images/Dr_Sichitiu.img,size=150 --network network=default --network network=admin_l2 --network network=admin_l3 -c /home/eb2-2027/ubuntu-18.04.1.0-live-server-amd64.iso -v
+
+
+cat /etc/os-release
+
+
+net-autostart 
+net-list 
+net-define
+net-destroy
+net-undefine
