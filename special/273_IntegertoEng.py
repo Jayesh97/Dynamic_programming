@@ -23,7 +23,7 @@ def inttoeng(num):
         else:
             tenner = num//10
             rest=num-tenner*10
-            return tens(tenner)+" "+one(rest) if rest else ten(tenner)
+            return tens(tenner)+" "+one(rest) if rest else tens(tenner)
     def three(num):
         hundred=num//100
         rest=num-hundred*100

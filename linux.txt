@@ -11,3 +11,84 @@ net-list
 net-define
 net-destroy
 net-undefine
+
+grnh for referrals
+lever-via
+
+phoom - hair
+don ta - eyes
+na o - b
+knon sa - var
+khun - you
+prod - please 
+
+
+import java.util.*;
+// IMPORT LIBRARY PACKAGES NEEDED BY YOUR PROGRAM
+// SOME CLASSES WITHIN A PACKAGE MAY BE RESTRICTED
+// DEFINE ANY CLASS AND METHOD NEEDED
+// CLASS BEGINS, THIS CLASS IS REQUIRED
+class Solution
+{        
+    void helper(int u,boolean visited[],int disc[],int low[],int parent[],
+    List<PairInt> ans,List<Integer> adj[],int time){
+        visited[u] =true;
+        disc[u] = time;
+        low[u] = time;
+        time++;
+    
+        Iterator<Integer> i = adj[u].iterator();
+        while(i.hasNext()){
+            int v = i.next();
+            if(!visited[v]){
+                parent[v] = u;
+                helper(v,visited,disc,low,parent,ans,adj,time);
+                
+                low[u] = Math.min(low[u],low[v]);
+                if(low[v] > disc[u]){
+                    ans.add(new PairInt(u,v));
+                }
+                else if(v != parent[u])
+                low[u] = Math.min(low[u],disc[v]);
+            }
+        }
+    }
+    // METHOD SIGNATURE BEGINS, THIS METHOD IS REQUIRED
+    List<PairInt> criticalConnections(int numOfServers, int numOfConnections, 
+                                      List<PairInt> connections)
+    {
+        // WRITE YOUR CODE HERE
+        List<PairInt> ans = new ArrayList<>();
+         List<Integer> adj[] = new LinkedList[numOfServers];
+         int time =0;
+         int NIL = -1;
+         
+         for(int i=0;i<numOfServers;i++)
+            adj[i] = new LinkedList();
+        
+        for(int i=0;i<connections.size();i++){
+            adj[connections.get(i).first-1].add(connections.get(i).second-1);
+            adj[connections.get(i).second-1].add(connections.get(i).first-1);
+
+        }
+        
+        boolean visited[] = new boolean[numOfServers];
+        int disc[] = new int[numOfServers];
+        int low[] = new int[numOfServers];
+        int parent[] = new int[numOfServers];
+        
+        for(int i=0;i<numOfServers;i++){
+            parent[i] = NIL;
+            visited[i] = false;
+        }
+        
+        for(int i=0;i<numOfServers;i++){
+            if(visited[i] == false)
+                helper(i,visited,disc,low,parent,ans,adj,time);
+        }
+                
+         return ans;
+        
+    }
+    // METHOD SIGNATURE ENDS
+}
