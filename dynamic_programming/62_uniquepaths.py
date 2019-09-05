@@ -10,3 +10,4 @@ def paths(m,n):
             k[i][j] = k[i-1][j]+k[i][j-1]
     return k[m-1][n-1]
 print(paths(3,2))
+

@@ -1,8 +1,10 @@
 prices = [7,1,5,3,6,4]
 def stocks2(prices):
+    if not prices:
+        return 0
     profit = 0
-    peak = 0
-    valley = 0
-    for i,j in enumerate(prices):
-        
+    for i in range(1,len(prices)):
+        if prices[i]>prices[i-1]:
+            profit = profit + prices[i]-prices[i-1]  
     return profit
+print(stocks2(prices))

@@ -1,0 +1,54 @@
+066535b99cae381d837f8ddfc15a9e880919e703
+
+if declared as int * etext --- we shift by 4 bytes when we do ++
+
+
+where is etext and all those defined ??? by compiler
+
+
+xenu - 
+    - everything in kernel mode
+    -we dont have system call numbers
+
+in other os which run in usermode-so sys call will call interrupt handler
+
+address translation done by H/w
+
+where in address?
+    data - gobal var
+    stack -local
+    heap - malloc()
+
+
+TCP incast problem in Datacenter
+    - all workers responding at same time
+
+TCP outcast
+
+
+Long-tail end-end delay
+    losing 1 packet - will make all 99 packets to keep delayed
+
+coflow scheduling for the solution
+
+
+#---------------SE git----------------#
+git commit
+git commit
+
+git branch bugFix
+git checkout bugFix
+
+$ git checkout bugFix
+$ git commit
+$ git checkout master
+$ git commit
+$ git merge bugFix
+
+head points to the lastes commit
+
+#missing but easy
+
+#-----installing sed----#
+
+wget compied to c/windows/system32
