@@ -1,4 +1,28 @@
-066535b99cae381d837f8ddfc15a9e880919e703
+d5d394fe87161dd3c0ad63944067b797d6b7fb3b
+
+***********************List of commands**********************
+
+
+sudo usermod -s /bin/rbash ece792;sudo mkdir /home/ece792/commands;sudo vim /home/ece792/.bash_profile
+
+# cat /home/ece792/.bash_profile  
+# .bash_profile  
+
+# Get the aliases and functions  
+if [ -f ~/.bashrc ]; then  
+. ~/.bashrc  
+fi  
+# User specific environment and startup programs  
+PATH=$HOME/commands  
+export PATH
+
+sudo ln -s /usr/bin/ssh /home/ece792/commands/;sudo ln -s /bin/ls /home/ece792/commands/;sudo ln -s /bin/scp /home/ece792/commands/
+
+https://access.redhat.com/solutions/65822 - link for further reference
+
+
+
+
 
 if declared as int * etext --- we shift by 4 bytes when we do ++
 
@@ -32,23 +56,64 @@ Long-tail end-end delay
 coflow scheduling for the solution
 
 
-#---------------SE git----------------#
-git commit
-git commit
-
-git branch bugFix
-git checkout bugFix
-
-$ git checkout bugFix
-$ git commit
-$ git checkout master
-$ git commit
-$ git merge bugFix
-
-head points to the lastes commit
-
-#missing but easy
-
-#-----installing sed----#
 
 wget compied to c/windows/system32
+
+
+x = x+1
+we need 5 physical address 
+rbp - stack based reister value
+fetch instruction also takes memory
+page table - to translate virtual to physical
+
+why 4,3?
+translate of virtual to phy - static relocation, no protection - disadvantage
+to cover it, we use dynamic relocation
+
+Base - offset is stored her -diff physical registers
+
+examples of Hw features leveraged by OS??
+
+1400 - exception, because we can only go to 1023
+
+stack address translation happens in reverse direction
+
+In address translation - base of the stack is mapped to the max address+1 - 12k-1+1
+
+c00 - 11 00000 00000 - 3*1024 - 3kb
+1000 - 0001 00 00000 00000 - 4*1024 - 4kb
+
+bisection bw - min bw bn 2 halves
+oversubscription ratio
+
+0x7000 0x0800
+
+range of valid - 0x7000 - base
+                - 0x0800  bounds
+
+                virtual add - 0x2800 --  0x2FFF
+                physical -    0x6800 -- 6xfff
+
+
+virt add - 0x2100 base - 0x7800  bounds - 0x1000
+
+when we call free - lib will record the size, we need not pass
+            how will lib know?
+                Goes back 8 bytes and checks - Time : <12.16>
+
+segmentaion - contguios in both physical and virtual
+paging - c in only virt
+
+magic no, changes to the pointer value
+
+sudo virt-install -n t11_vm8 --disk path=/var/lib/libvirt/images/t11_vm8.img,size=256 --ram=24576 --vcpus=4 --cpu host --cdrom /home/eb2-2027/ubuntu-18.04.3-live-server-amd64.iso  --network network=default --network network=l2_bridge --network network=l3_bridge --network network=t_bridge -v
+
+
+
+******************************** VM setup **********************************
+
+echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
+
+
+
+

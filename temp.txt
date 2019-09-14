@@ -1,0 +1,51 @@
+cp freemem.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp chprio.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp getpid.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp getprio.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp gettime.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp kill.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp receive.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp recvclr.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp recvtim.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+
+
+cp resume.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp scount.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+
+cp sdelete.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp send.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp setdev.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+
+cp setnok.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+
+
+cp screate.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp signal.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp signaln.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp sleep.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp sleep10.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp sleep100.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp sleep1000.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp sreset.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp stacktrace.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp suspend.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp unsleep.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+cp wait.c /afs/unity.ncsu.edu/users/s/sjbondu/project/pa0/csc501-lab0/sys/;
+
+
+
+
+replace currpid
+replace pno
+replace ctr - freq - 3
+replace timer - total - 3
+replace start_time = t0 
+replace start_flag = trigger
+
+        int cp=currpid;
+        int pno=1;
+
+%s/start_flag/trigger/e | %s/currpid/cp/e | %s/].ctr/].freq/e | %s/].timer/].total/e | %s/proc_timer/process_structure/e | %s/start_time/t0/e
+
+%s/a_resume/pno
+
