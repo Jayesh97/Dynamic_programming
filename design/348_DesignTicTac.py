@@ -1,19 +1,25 @@
 n = 3
-class TictacToe(object):
-    def __init__(self,n):
-        self.d = {}
-        self.n = n
+class TicTacToe(object):
 
-    def move(self,row,col,player):
-        d = self.d
-        for i,j in enumerate((row,col,row+col,row-col)):
-            d[i,j,player]=d.get((i,j,player),0)+1
-            #print(self.d)
-            if d[i,j,player]==n:
-                return player
+    def __init__(self, n):
+        self.row, self.col, self.diag, self.anti_diag, self.n = [0] * n, [0] * n, 0, 0, n
+        
+    def move(self, row, col, player):
+        offset = player * 2 - 3
+        print(offset)
+        self.row[row] += offset
+        self.col[col] += offset
+        if row == col:
+            self.diag += offset
+        if row + col == self.n - 1:
+            self.anti_diag += offset
+        if self.n in [self.row[row], self.col[col], self.diag, self.anti_diag]:
+            return 2
+        if -self.n in [self.row[row], self.col[col], self.diag, self.anti_diag]:
+            return 1
         return 0
 
-obj = TictacToe(3)
+obj = TicTacToe(3)
 f = obj.move(0,0,1)
 f = obj.move(0,2,2)
 f = obj.move(1,0,1)

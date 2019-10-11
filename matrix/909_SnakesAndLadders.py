@@ -8,7 +8,7 @@ board = [
 [-1,15,-1,-1,-1,-1]]
 def moves(board):
     n = len(board)
-    def get(s):
+    def get(s):  #we need to get the row and column for a particular number
         quot,rem = divmod(s-1,n)
         row = n-1-quot #6-1-(0)
         col = rem if row%2!=n%2 else n-1-rem #shuffles 
@@ -16,7 +16,7 @@ def moves(board):
     dist = {1:0}
     queue = collections.deque([1])
     while queue:
-        #print("queue",queue)
+        print("queue",queue)
         s = queue.popleft()
         if s==n**2: return dist[s]
         #get possibilities of next step

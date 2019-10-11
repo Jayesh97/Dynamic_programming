@@ -16,7 +16,8 @@ fi
 PATH=$HOME/commands  
 export PATH
 
-sudo ln -s /usr/bin/ssh /home/ece792/commands/;sudo ln -s /bin/ls /home/ece792/commands/;sudo ln -s /bin/scp /home/ece792/commands/
+sudo ln -s /usr/bin/ssh /home/ece792/commands/;sudo ln -s /bin/ls /home/ece792/commands/;sudo ln -s /usr/bin/ssh /home/ece792/commands/;sudo ln -s /bin/ls /home/ece792/commands/;sudo ln -s /usr/bin/scp /home/ece792/commands/
+
 
 https://access.redhat.com/solutions/65822 - link for further reference
 
@@ -115,5 +116,15 @@ sudo virt-install -n t11_vm8 --disk path=/var/lib/libvirt/images/t11_vm8.img,siz
 echo "nameserver 8.8.8.8" | sudo tee /etc/resolv.conf > /dev/null
 
 
+Hello Sir,
+I am a grad Student in NCSU. I am persuing masters in Computer Networking. I have a relevent experience in Cloud, networking and Devops Field. I would like to know the opportunities and am interested in SRE role.
+Please let me know if u find a relevant match. I have attached my resume.
+Thank You.
 
 
+******************acn 23/09***************
+
+ECN - eplicit congestion notification, used with AQM
+DCTCP  - 
+D2TCP - Deadline aware TCP
+PDQ 

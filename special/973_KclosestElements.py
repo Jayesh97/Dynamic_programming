@@ -7,8 +7,11 @@ def q_sort(i,j,k):
         return
     #Choice of random pivot guarantees of the worst case O(n)
     p=random.randint(i,j)
-    points[i],points[p]=points[p],points[i]
+    print(p)
+    points[i],points[p]=points[p],points[i] #selects a random pivot and swaps with 1st element
     midd = partition(i,j)
+    print(midd) #finds the proper position of pivot
+    print(points)
     if k<midd-i+1:
         q_sort(i,midd-1,k)
     elif k>midd-1+1:

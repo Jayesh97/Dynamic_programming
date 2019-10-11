@@ -1,0 +1,49 @@
+************************* k stack from array of size n*********************
+
+top[]             {-1,-1,-1}
+stackdata         {5,6,7,0,0,0}
+nextindex         {1,2,3,4,5,-1}   #points to next available if not filled, else points to previos available
+
+nextavailable = 3                  #points to next index available
+
+case1. New element, always at next
+case2. Pop an element, next available points to prev(next index) of popped, then new element goes there
+
+********************queue from 2 stacks*********************
+
+queue = [a,b,c,d]
+enqueue - 'a'
+stack1 = [] #used to push elements
+stack2 = [] #pop elements from here, if empty push all element from stact1 to stack2
+
+
+*****************Get min from stack in O(1)*********************
+
+main stack = []
+supporting stack = [] #stores all min elements in sorted order
+
+50 [50] [50]
+40 [50 40] [50 40]
+55 [50 40 55] [50 40] #dont push 55 into supporting stack
+pop -55 -----> just pop from main stack
+pop 40  -----> pop from both
+
+what if 55443322222222222222222222 ?
+use hashmap = the a small supporting stack
+
+4 stack solution
+
+original stack:
+duplicate stack:
+duplicate stack count:
+
+****************************Static Binding vs Dynamic Binding*****************
+
+static, final, private methods are overridden at compile time
+
+static void print - Binding happens at compile time #superclass B = new subclass()
+void print - Binding happens at run time #superclass B = new subrclass()
+
+https://www.geeksforgeeks.org/static-vs-dynamic-binding-in-java/
+
+

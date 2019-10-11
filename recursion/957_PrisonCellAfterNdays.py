@@ -7,7 +7,9 @@ def prison(cells,N):
     while N>0:
         c = tuple(cells)
         if c in seen:
+            print(N,seen[c])
             N = N%(seen[c]-N)
+            print(c,N)9
         seen[c]=N
         if N>=1:
             N=N-1
