@@ -35,3 +35,5 @@ https://kubernetes.io/blog/2016/01/simple-leader-election-with-kubernetes/
 
 side car contaiers, helpercontainer
 pod - basic unit deployment
+
+

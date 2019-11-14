@@ -1,8 +1,23 @@
-def reorder(logs):
-    def func(log):
-        #splits into 2 words at 1st occurance of the " "
-        idc,rest = log.split(" ",1)
-        return  (0,rest,idc) if rest[0].isalpha() else (1,)
-    return sorted(logs,key=func)
-logs = ["dig1 8 1 5 1","let1 art can","dig2 3 6","let2 own kit dig","let3 art zero"]
-print(reorder(logs))
+input = """network-services,DNS\n
+name,luv\n
+Name,jayesh\n
+Network-services,DHCP"""
+l = input.strip(" ").split("\n")
+print(l)
+l = set(l)
+if "" in l:
+    l.remove("")
+d = {}
+print(l)
+for i in l:
+    key,valuen = i
+    key,value = key.lower(),value
+    d[key]=d.get(key,[])
+    d[key].append(value)
+    """
+    if key in d:
+        d[key].append(value)
+    else:
+        d[key]=[value]
+    """
+print(d)
