@@ -105,3 +105,9 @@ pros - data locality, SSD, HDD
 3 levels of cache - in memory cache, ssd flash, HDD
 
 Nutanix Distributed file system - scale up FS (as a data store)
+
+3 - 3 
+5 - reasoning
+7
+8 - reasoning
+9

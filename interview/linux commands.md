@@ -182,4 +182,37 @@ init m : Same as init s and init S.
 init M : Same as init s or init S or init m.
 We can take it from above that 4 options(S,s,M,m) are synonymous.
 
+## process
+
+ps + grep - pgrep
+
+pkill httpd - process name 
+
+pkill -15(sigterm) - default - terminate after done
+
+pkill -9(sigkill) - kill immediately
+
+w - list of users
+
+service --staus--all
+
+netstat
+
+## journelctl
+
+all logs are here
+
+## fdisk
+
+fdisk -n  - new partititon
+
+blkid - to show available block storage devices
+
+mount, umount
+
+gdisk - GPT based partitions
+
+## lvm
+
+pvcreate, vgcreate, lvcreate 
 

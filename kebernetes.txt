@@ -37,3 +37,130 @@ side car contaiers, helpercontainer
 pod - basic unit deployment
 
 
+
+
+https://minikube.sigs.k8s.io/docs/start/linux/
+
+
+kubeadm token create --print-join-command
+
+
+
+4 cat of cloud computing, apps suitable for cloud, where and when to use c.c 
+analysis suitable for dciding which app to use
+tcp icast, congestion - partion aggregation
+characters of flows*, goal of DC - application aware networking - thats y we go deep into flow characters
+small flows vs large flows(few but takes more data volume)
+sdn dc - we apply sdn on large flows
+
+
+topologies of dc -fat tree - vulnerable to singlw p of fail, overprovisioing - expand tree to fat tree
+characteristics of topologies - bandwidth/oversub, reliability, path diversity, path lenghts
+bcube - can use dumb switches, modular, routing problem - in Bcube*
+adv of fat tree vs bcube and vice versa in terms of above characteristics
+
+
+protocols in DC
+tcp - congestion control, probles in TCP* 
+ecn - works in both transpot and nw layer, y do we need aqm - to identity point, motication - make it proactive - to send notifications even before packets drop, reactive and proactive
+disadv of ecn - aggressive reduction in window
+qmin and qmax - for dropping and marking packet, ecn - marks packet
+dctcp - to reduce aggresion, to make estimate of congestion level, notifices how many packets experience congestion
+dctcp - doesnt care about deadlines
+d2tcp - if deadline is short - punish less - give more bandwidth
+formula to punish*(problem)
+PDQ - flow scattering solution, only shorter flows are given bw, shorter flow preempts longer flow - to make only critical flows use the nw, works only if forward and backward are same, cant be used for multippathing
+
+multipathing 
+pros and cons of bgp
+ecmp - only in Nw layer
+packet level ecmp - route to multi exit ports, has more retransissions(problem)
+flow level ecmp - maps same flow to same path, 5 fields - 
+alos for flow - modulo N, hash, heighest random wt - complexity of algorithm and readjusting flows(called as disruption)
+
+mptcp - Nw level + transpot level - takes hash and sends based on it
+we can create multi subflows for same flow - each has subid
+issues of mptcp - overhead for managing subflows, unfairness to other flows(few flows can open up more flows taking more bw - called as TCP unfriendliness)
+short flows - not to use mptcp
+
+DCN mulicasting
+min strainer tree problem, complexity - np hard or not, 
+practical solution - min spanning tree(better solutions - aligns more with definition),(minimizes len of each path) shortest path tree
+practical size - shotest path tree, these trees are already availible in switches and routers, so we dont need to specifically desing
+PIM - for routing
+alog that uses bloom filter(a data structe that stores info efficiently) - to store multicasted tree  - stored in packer header
+all bits 1 - probable that element is presenet, no false negatives
+evaluating false positive rates - based on hash functions(specific K), problem - we may forward to some wrong thing which might create a loop - to solve this we rely on shortest path distance(solving loop problem)
+solving  bw issue - dont use bloom filter for large groups - as consumes more Bw when packets sent to wrong node, so divide in groups and then do it
+
+DCN virtualization
+vlan, vswitches - when , why and network-level virtualization
+virtual network embedding problem - variants, complexity and practical solutions
+where to put the nodes and how to make links - solutions to solve these - uncordinated and cordinated algorithms
+allocation range, computing allocation range, decide if root sw can accomocate - feasability problem and optimization problem
+
+SDN in DCN
+pros and cons of sdn in DCN* 
+solutions of sdn - hydera - traffic engg based solution, desing choices and challenges
+
+b4 - inter datacenter solution - sdn based, architecture, routing decisions
+cloud federations - why? 
+
+edge computing
+how(resource allocation problem and diff problems*) and where do we offload the computing - desings in it - by using response time and tx time
+hotspot problem, provisioning problem, orchestration problem - complexity and solutions
+
+blockchain
+trust issue, distributed consensus
+2 limts - cap thorem(we cant acchieve 3 props at the same time), byzentine problem(1/3rd)
+realaxes availibity or consitability
+consens alogs - PoW and PBFT
+layer0-3 of blockchain
+
+
+
+byzentine node is one which sends diff answers to diff people
+
+
+
+
+curl --head http://127.0.0.1:8086
+
+kubectl port-forward nginx 8085:80
+
+kubectl port-forward deployment/httpd-deployment 8086:80
+
+kubectl create -f deployment.yml
+
+kubectl delete pod httpd-deployment-6bcf5867cf-4rv7x
+
+
+
+Paycheck Issue Date
+12/27/2019
+Pay Period Begin Date
+11/30/2019              -  10 - dec 9 and dec 2  (10.am to 8.00pm)
+Pay Period End Date
+12/13/2019
+
+
+Paycheck Issue Date
+12/13/2019
+Pay Period Begin Date           - 10 - 10 left 11/25 (10.am to 8.00pm) - 
+11/16/2019
+Pay Period End Date
+11/29/2019
+
+
+Paycheck Issue Date
+11/27/2019
+Pay Period Begin Date
+11/02/2019                  - Monday nov 4 - (10.am to 8.00pm) , Monday Nov 11 -  (10.am to 8.00pm) - submitted
+Pay Period End Date
+11/15/2019
+
+
+
+
+
+

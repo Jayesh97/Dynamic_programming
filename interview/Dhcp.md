@@ -3,6 +3,39 @@
 for handshake you need IP
 
 
+
+## what is dhcp
+
+DHCP consists of two components 
+
+* a protocol for delivering host-specific configuration parameters from a
+   DHCP server to a host 
+   
+* and a mechanism for allocation of network
+   addresses to hosts.
+
+
+## ip allocation via DHCP
+
+DHCP supports three mechanisms for IP address allocation.  In
+   "automatic allocation", DHCP assigns a permanent IP address to a
+   client.  In "dynamic allocation", DHCP assigns an IP address to a
+   client for a limited period of time (or until the client explicitly
+   relinquishes the address).  In "manual allocation", a client's IP
+   address is assigned by the network administrator, and DHCP is used
+   simply to convey the assigned address to the client
+
+   
+## what all icmp can do?
+
+ The Internet Control Message Protocol (ICMP) [16]
+   provides for informing hosts of additional routers via "ICMP
+   redirect" messages.  ICMP also can provide subnet mask information
+   through the "ICMP mask request" message and other information through
+   the (obsolete) "ICMP information request" message.  Hosts can locate
+   routers through the ICMP router discovery mechanism [8].
+
+
 ## DHCP vs Bootp
 
 There are two primary differences between DHCP and BOOTP.  
@@ -15,24 +48,39 @@ of network addresses to different clients.
 mechanism for a client to acquire all of the IP configuration
 parameters that it needs in order to operate.
 
+   0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1 2 3 4 5 6 7 8 9 0 1
+   +-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+
+   |     op (1)    |   htype (1)   |   hlen (1)    |   hops (1)    |
+   +---------------+---------------+---------------+---------------+
+   |                            xid (4)                            |
+   +-------------------------------+-------------------------------+
+   |           secs (2)            |           flags (2)           |
+   +-------------------------------+-------------------------------+
+   |                          ciaddr  (4)                          |
+   +---------------------------------------------------------------+
+   |                          yiaddr  (4)                          |
+   +---------------------------------------------------------------+
+   |                          siaddr  (4)                          |
+   +---------------------------------------------------------------+
+   |                          giaddr  (4)                          |
+   +---------------------------------------------------------------+
+   |                                                               |
+   |                          chaddr  (16)                         |
+   |                                                               |
+   |                                                               |
+   +---------------------------------------------------------------+
+   |                                                               |
+   |                          sname   (64)                         |
+   +---------------------------------------------------------------+
+   |                                                               |
+   |                          file    (128)                        |
+   +---------------------------------------------------------------+
+   |                                                               |
+   |                          options (variable)                   |
+   +---------------------------------------------------------------+
 
-## whats new in DHCP - client identifier
 
-DHCP defines a new 'client identifier' option that is used to pass an
-   explicit client identifier to a DHCP server
-
-The 'client identifier' chosen by a
-   DHCP client MUST be unique to that client within the subnet to which
-   the client is attached. If the client uses a 'client identifier' in
-   one message, it MUST use that same identifier in all subsequent
-   messages, to ensure that all servers correctly identify the client.
-
-A DHCP server always returns its own address in the 'server
-   identifier' option.
-
-
-   
-   FIELD      OCTETS       DESCRIPTION
+ FIELD      OCTETS       DESCRIPTION
    -----      ------       -----------
 
    op            1  Message op code / message type.
@@ -67,8 +115,25 @@ A DHCP server always returns its own address in the 'server
                     documents for a list of defined options.
 
 
+## whats new in DHCP - client identifier
 
-## DHCP before TCP/IP 
+DHCP defines a new 'client identifier' option that is used to pass an
+   explicit client identifier to a DHCP server
+
+The 'client identifier' chosen by a
+   DHCP client MUST be unique to that client within the subnet to which
+   the client is attached. If the client uses a 'client identifier' in
+   one message, it MUST use that same identifier in all subsequent
+   messages, to ensure that all servers correctly identify the client.
+
+
+## siaddr
+
+A DHCP server always returns its own address in the 'server
+   identifier' option.
+
+
+## DHCP before TCP/IP - significance of broadcast bit
 
 The TCP/IP software SHOULD accept and
    forward to the IP layer any IP packets delivered to the client's
@@ -94,19 +159,23 @@ The first service provided by DHCP is to provide persistent storage
    subnet) and the value contains the configuration parameters for the
    client.
 
+The protocol defines
+   that the key will be (IP-subnet-number, hardware-address) unless the
+   client explicitly supplies an identifier using the 'client
+   identifier' option.
+
+
 
 ## Allocation of Network Address - usecase 2
 
- As a consistency check, the allocating
+
+ As a consistency check - for reused addresses, the allocating
    server SHOULD probe the reused address before allocating the address,
    e.g., with an ICMP echo request, and the client SHOULD probe the
    newly received address, e.g., with ARP.
 
 ## dhcp options
 
-The first four octets of the 'options' field of the DHCP message
-   contain the (decimal) values 99, 130, 83 and 99, respectively (this
-   is the same magic cookie
 
 One particular option -
    the "DHCP message type" option - must be included in every DHCP
@@ -149,7 +218,20 @@ One particular option -
                    network address.
 
 
-## selection of DHCP server amongst multiple servers
+
+## allocating network address for new client
+
+1. The DHCPDISCOVER message MAY include options that suggest
+      values for the network address and lease duration
+
+2. Each server may respond with a DHCPOFFER message that includes an
+      available network address in the 'yiaddr' field (and other
+      configuration parameters in DHCP options)
+
+   the server may probe the offered address
+      with an ICMP Echo Request - admins can disable probe
+
+3. selection of DHCP server amongst multiple servers and DHCP request
 
 The client receives one or more DHCPOFFER messages from one or more
      servers.  The client may choose to wait for multiple responses.
@@ -158,6 +240,42 @@ The client receives one or more DHCPOFFER messages from one or more
      DHCPOFFER messages.  The client broadcasts a DHCPREQUEST message
      that MUST include the 'server identifier' option to indicate which
      server it has selected
+
+ The 'requested IP
+     address' option MUST be set to the value of 'yiaddr' in the
+     DHCPOFFER message from the server.
+
+The client times out and retransmits the DHCPDISCOVER message if
+     the client receives no DHCPOFFER messages.
+
+4. The server selected in the DHCPREQUEST message commits the
+     binding for the client to persistent storage and responds with a
+     DHCPACK message containing the configuration parameters for the
+     requesting client
+
+The server SHOULD NOT check the offered
+     network address at this point - check happpened in step-2
+
+ If the selected server is unable to satisfy the DHCPREQUEST message
+     (e.g., the requested network address has been allocated), the
+     server SHOULD respond with a DHCPNAK message.
+
+The client receives the DHCPACK message with configuration
+     parameters.  The client SHOULD perform a final check on the
+     parameters (e.g., ARP for allocated network address), and notes the
+     duration of the lease specified in the DHCPACK message
+
+If the client detects that the
+     address is already in use (e.g., through the use of ARP), the
+     client MUST send a DHCPDECLINE message
+
+The client may choose to relinquish its lease on a network address
+     by sending a DHCPRELEASE message to the server.  The client
+     identifies the lease to be released with its 'client identifier',
+     or 'chaddr' and network address in the DHCPRELEASE message. If the
+     client used a 'client identifier' when it obtained the lease, it
+     MUST use the same 'client identifier' in the DHCPRELEASE message.
+
 
 ## indentifier in DHCP msgs
 
